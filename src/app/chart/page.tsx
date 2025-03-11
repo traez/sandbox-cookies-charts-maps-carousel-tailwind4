@@ -1,17 +1,11 @@
-import type { Metadata } from "next";
-import Chart from "@/components/Chart";
-
-export const metadata: Metadata = {
-  title: "Chart Sandbox",
-  description: "Created by Trae Zeeofor",
+const pageChart = () => {
+  return (
+    <>
+      <section className="flex flex-col justify-between items-center">
+        <h1>Chart Homepage - Click Chart Links Above</h1>
+      </section>
+    </>
+  );
 };
 
-const page = () => {
- return (
-   <>
-     <Chart />
-   </>
- );
-};
-
-export default page;
+export default pageChart;

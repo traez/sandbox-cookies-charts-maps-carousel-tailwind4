@@ -18,10 +18,9 @@ interface PieChartProps {
   chartData: ChartData<"pie">;
 }
 
-const PieChart = ({ chartData }: PieChartProps) => {
+const PieChartSub = ({ chartData }: PieChartProps) => {
   return (
     <div className="chart-container h-96 w-full">
-      <h2 className="text-center mb-4">Pie Chart</h2>
       <div className="h-full">
         <Pie
           data={chartData}
@@ -40,7 +39,7 @@ const PieChart = ({ chartData }: PieChartProps) => {
   );
 };
 
-const Chart = () => {
+const PieChart = () => {
   // Define chartData as a constant instead of state
   const chartData = {
     labels: data.map((item) => item.year.toString()), // Convert years to strings for labels
@@ -68,12 +67,14 @@ const Chart = () => {
 
   return (
     <div className="w-full py-8 flex flex-col justify-center items-center">
-      <h2 className="text-center text-xl font-bold mb-6">User Growth Chart</h2>
+      <h2 className="text-center text-xl font-bold mb-6">
+        Pie Chart - User Growth Chart
+      </h2>
       <div className="w-full max-w-2xl mx-auto">
-        <PieChart chartData={chartData} />
+        <PieChartSub chartData={chartData} />
       </div>
     </div>
   );
 };
 
-export default Chart;
+export default PieChart;

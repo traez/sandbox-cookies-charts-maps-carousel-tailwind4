@@ -17,13 +17,15 @@ While there's no universally fixed "acceptable" max height, sticking to 400–70
 font-family: Arial, Helvetica, sans-serif;
 */ 
 
-* {
-  utline: 1px solid black;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  * {
+    utline: 1px solid black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
 }
-
 
 :root {
   --background: #ffffff;

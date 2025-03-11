@@ -24,6 +24,12 @@ export default async function Header() {
         >
           Chart
         </Link>
+        <Link
+          href="/maps"
+          className="text-base font-semibold border-2 border-blue-900 px-4 py-2 rounded-md hover:bg-yellow-300  transition duration-300"
+        >
+          Maps
+        </Link>
       </aside>
     </nav>
   );

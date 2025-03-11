@@ -1,0 +1,93 @@
+"use client";
+import { data } from "@/lib/data";
+import { Bar } from "react-chartjs-2";
+import { ChartData } from "chart.js/auto"; // TypeScript types
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+// Register Chart.js components for Tree-Shaking
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+interface BarChartProps {
+  chartData: ChartData<"bar">;
+}
+
+const BarChartSub = ({ chartData }: BarChartProps) => {
+  return (
+    <div className="chart-container h-96 w-full">
+      <div className="h-full">
+        <Bar
+          data={chartData}
+          options={{
+            plugins: {
+              title: {
+                display: true,
+                text: "Users Gained vs Lost between 2016-2020",
+              },
+              legend: {
+                display: true,
+                position: "top",
+              },
+            },
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+const BarChart = () => {
+  // Define chartData as a constant
+  const chartData = {
+    labels: data.map((item) => item.year.toString()),
+    datasets: [
+      {
+        label: "Users Gained",
+        data: data.map((item) => item.userGain),
+        backgroundColor: "#36A2EB",
+        borderColor: "#2993DB",
+        borderWidth: 1,
+      },
+      {
+        label: "Users Lost",
+        data: data.map((item) => item.userLost),
+        backgroundColor: "#FF6384",
+        borderColor: "#E95375",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return (
+    <div className="w-full py-4 flex flex-col justify-center items-center">
+      <h2 className="text-center text-xl font-bold mb-6">
+        Bar Chart - User Metrics Comparison
+      </h2>
+      <div className="w-full max-w-2xl mx-auto">
+        <BarChartSub chartData={chartData} />
+      </div>
+    </div>
+  );
+};
+
+export default BarChart;

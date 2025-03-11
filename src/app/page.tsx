@@ -2,8 +2,8 @@
 
 export default function Home() {
   return (
-    <div className="">
-    
+    <div className="p-1">
+      <h1 className="">Sandbox 5 Dependencies Testing</h1>
       <p className=" ">
         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere labore
         saepe eligendi, nesciunt adipisci quibusdam praesentium reprehenderit
