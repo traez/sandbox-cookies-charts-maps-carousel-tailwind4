@@ -11,24 +11,30 @@ export default async function Header() {
           Sandbox 5
         </Link>
       </menu>
-      <aside className="flex justify-center items-center gap-4 md:gap-6">
+      <aside className="flex justify-center items-center gap-2 md:gap-4">
         <Link
           href="/jscookie"
-          className="text-base font-semibold border-2 border-blue-900 px-4 py-2 rounded-md hover:bg-yellow-300  transition duration-300"
+          className="text-base font-semibold border-2 border-blue-900 px-2 py-1 rounded-md hover:bg-yellow-300  transition duration-300"
         >
           JsCookie
         </Link>
         <Link
           href="/chart"
-          className="text-base font-semibold border-2 border-blue-900 px-4 py-2 rounded-md hover:bg-yellow-300  transition duration-300"
+          className="text-base font-semibold border-2 border-blue-900 px-2 py-1 rounded-md hover:bg-yellow-300  transition duration-300"
         >
           Chart
         </Link>
         <Link
           href="/maps"
-          className="text-base font-semibold border-2 border-blue-900 px-4 py-2 rounded-md hover:bg-yellow-300  transition duration-300"
+          className="text-base font-semibold border-2 border-blue-900 px-2 py-1 rounded-md hover:bg-yellow-300  transition duration-300"
         >
           Maps
+        </Link>
+        <Link
+          href="/carousel"
+          className="text-base font-semibold border-2 border-blue-900 px-2 py-1 rounded-md hover:bg-yellow-300  transition duration-300"
+        >
+          Carousel
         </Link>
       </aside>
     </nav>
