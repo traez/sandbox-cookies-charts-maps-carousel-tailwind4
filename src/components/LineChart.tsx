@@ -56,7 +56,7 @@ const LineChart = () => {
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "#36A2EB",
         borderWidth: 2,
-        tension: 0.1, // Reduced tension to minimize curve complexity
+        tension: 0, 
         pointBackgroundColor: "#36A2EB",
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
@@ -68,7 +68,7 @@ const LineChart = () => {
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "#FF6384",
         borderWidth: 2,
-        tension: 0.1, // Reduced tension to minimize curve complexity
+        tension: 0, 
         pointBackgroundColor: "#FF6384",
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
