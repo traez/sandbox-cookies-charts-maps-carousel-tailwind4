@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import "@/lib/chartConfig"; 
 import { data } from "@/lib/data";
 import { Bar } from "react-chartjs-2";
@@ -39,6 +40,12 @@ const BarChartSub = ({ chartData }: BarChartProps) => {
 };
 
 const BarChart = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Define chartData as a constant
   const chartData = {
     labels: data.map((item) => item.year.toString()),
@@ -59,6 +66,14 @@ const BarChart = () => {
       },
     ],
   };
+
+  if (!mounted) {
+    return (
+      <div className="h-96 w-full flex items-center justify-center">
+        Loading chart...
+      </div>
+    );
+  }
 
   return (
     <div className="w-full py-4 flex flex-col justify-center items-center">

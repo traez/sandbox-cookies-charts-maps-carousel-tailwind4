@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import "@/lib/chartConfig"; 
 import { data } from "@/lib/data";
 import { Pie } from "react-chartjs-2";
@@ -30,9 +31,15 @@ const PieChartSub = ({ chartData }: PieChartProps) => {
 };
 
 const PieChart = () => {
-  // Define chartData as a constant instead of state
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Define chartData as a constant
   const chartData = {
-    labels: data.map((item) => item.year.toString()), // Convert years to strings for labels
+    labels: data.map((item) => item.year.toString()),
     datasets: [
       {
         label: "Users Gained",
@@ -43,7 +50,7 @@ const PieChart = () => {
           "#FFCE56",
           "#4BC0C0",
           "#9966FF",
-        ], // Colors for each segment
+        ],
         hoverBackgroundColor: [
           "#FF6384",
           "#36A2EB",
@@ -54,6 +61,14 @@ const PieChart = () => {
       },
     ],
   };
+
+  if (!mounted) {
+    return (
+      <div className="h-96 w-full flex items-center justify-center">
+        Loading chart...
+      </div>
+    );
+  }
 
   return (
     <div className="w-full py-8 flex flex-col justify-center items-center">

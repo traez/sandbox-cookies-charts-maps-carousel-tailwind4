@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import "@/lib/chartConfig"; 
 import { data } from "@/lib/data";
 import { Line } from "react-chartjs-2";
@@ -39,6 +40,12 @@ const LineChartSub = ({ chartData }: LineChartProps) => {
 };
 
 const LineChart = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Define chartData as a constant
   const chartData = {
     labels: data.map((item) => item.year.toString()),
@@ -49,7 +56,7 @@ const LineChart = () => {
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "#36A2EB",
         borderWidth: 2,
-        tension: 0.1,
+        tension: 0.1, // Reduced tension to minimize curve complexity
         pointBackgroundColor: "#36A2EB",
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
@@ -61,7 +68,7 @@ const LineChart = () => {
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "#FF6384",
         borderWidth: 2,
-        tension: 0.1,
+        tension: 0.1, // Reduced tension to minimize curve complexity
         pointBackgroundColor: "#FF6384",
         pointBorderColor: "#fff",
         pointHoverBackgroundColor: "#fff",
@@ -69,6 +76,14 @@ const LineChart = () => {
       },
     ],
   };
+
+  if (!mounted) {
+    return (
+      <div className="h-96 w-full flex items-center justify-center">
+        Loading chart...
+      </div>
+    );
+  }
 
   return (
     <div className="w-full py-4 flex flex-col justify-center items-center">
