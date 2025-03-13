@@ -1,26 +1,8 @@
 "use client";
+import "@/lib/chartConfig"; 
 import { data } from "@/lib/data";
 import { Bar } from "react-chartjs-2";
 import { ChartData } from "chart.js/auto"; // TypeScript types
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-// Register Chart.js components for Tree-Shaking
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 interface BarChartProps {
   chartData: ChartData<"bar">;
