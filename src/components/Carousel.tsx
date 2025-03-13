@@ -1,18 +1,16 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
-// At the top of the file, after the imports, add this interface:
+// Update the interface to match the actual methods available
 interface AliceCarouselMethods extends AliceCarousel {
   slideTo: (index: number) => void;
   slideNext: () => void;
   slidePrev: () => void;
-  play: () => void;
-  pause: () => void;
 }
 
-// Define types for the carousel ref and event handlers
+// Define types for the carousel items and event handlers
 type CarouselItem = {
   id: number;
   color: string;
@@ -28,10 +26,16 @@ interface SlideChangedEvent {
 }
 
 export default function Carousel() {
-  // Then update the ref type:
   const carouselRef = useRef<AliceCarouselMethods | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  // Add state to control client-side rendering
+  const [isClient, setIsClient] = useState(false);
+
+  // Use useEffect to set isClient to true after component mounts
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Responsive breakpoints configuration
   const responsive = {
@@ -78,15 +82,15 @@ export default function Carousel() {
   };
 
   const toggleAutoplay = () => {
-    if (isPlaying) {
-      carouselRef.current?.pause();
-    } else {
-      carouselRef.current?.play();
-    }
     setIsPlaying(!isPlaying);
   };
 
   const syncActiveIndex = ({ item }: { item: number }) => setActiveIndex(item);
+
+  // Return a loading state or null until client-side rendering is ready
+  if (!isClient) {
+    return <div className="container mx-auto p-4">Loading carousel...</div>;
+  }
 
   return (
     <div className="container mx-auto p-4">
