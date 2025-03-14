@@ -1,6 +1,6 @@
-# Tanstack React Query App
+# Sandbox 5; (Cookies, Charts, Maps, Carousel and TailwindCSSV4)
 
-Tanstack (React) Query Sandbox App
+Sandbox app for Cookies, Charts, Maps, Carousel and TailwindCSSV4
 
 ## Table of contents
 
@@ -20,7 +20,7 @@ Tanstack (React) Query Sandbox App
 
 ### The Challenge/User Stories
 
-Build a Next.js application that demonstrates the power of Tanstack React Query by implementing efficient data fetching, state management, and caching. Create a Comments page that fetches and displays data from an API and a Form Posts page that allows users to create new posts and see them update instantly using React Query’s mutation and cache invalidation. Ensure proper loading states and error handling for a smooth user experience. Use Tailwind CSS for styling, make the design fully responsive, and include a clear landing page explaining the application’s purpose. Follow best practices in structuring the project to serve as both a learning tool and a demonstration of React Query’s capabilities.    
+Your task is to build a sandbox environment that integrates various frontend features, including cookie management, dynamic charts, interactive maps, and an image carousel, all styled with Tailwind CSS v4. Implement client-side storage using js-cookie for managing cookies, allowing users to store and retrieve small data efficiently. Use a charting library to visualize data interactively and integrate Leaflet with OpenStreetMap for an engaging mapping experience. Develop a customizable image carousel for seamless browsing of image collections. Ensure the UI is responsive and modern by leveraging Tailwind CSS v4, and structure your components for easy navigation and scalability.
 
 ### Screenshot
 
@@ -28,8 +28,8 @@ Build a Next.js application that demonstrates the power of Tanstack React Query 
 
 ### Links
 
-- Solution URL: [https://github.com/traez/tanstack-react-query](https://github.com/traez/tanstack-react-query)
-- Live Site URL: [https://tanstack-react-query.vercel.app/](https://tanstack-react-query.vercel.app/)
+- Solution URL: [https://github.com/traez/sandbox-cookies-charts-maps-carousel-tailwind4](https://github.com/traez/sandbox-cookies-charts-maps-carousel-tailwind4)
+- Live Site URL: [https://sandbox-cookies-charts-maps-carousel-tailwind4.vercel.app/](https://sandbox-cookies-charts-maps-carousel-tailwind4.vercel.app/)
 
 ## My process
 
@@ -42,65 +42,102 @@ Build a Next.js application that demonstrates the power of Tanstack React Query 
 - [React](https://reactjs.org/) - JS library
 - [Next.js](https://nextjs.org/) - React framework
 - Typescript
-- Nodejs            
-- Tailwind CSS     
-- react-icons  
-- tanstack/react-query    
+- Nodejs
+- Tailwind CSS
+- bprogress/next
+- chart.js
+- react-chartjs-2
+- js-cookie
+- leaflet
+- react-leaflet
+- react-alice-carousel
 
 ### What I learned
-   
-**1 Installation and Setup**  
-- Install TanStack Query: `npm i @tanstack/react-query`  
-- Install ESLint Plugin: `npm i -D @tanstack/eslint-plugin-query`  
-**Provider Setup**: Next.js requires a different approach due to its server-side rendering  
-**Development Tools**: React Query Devtools are optional but helpful for debugging  
 
-**2 Core Concepts**  
-TanStack Query has three fundamental concepts:  
-A. **Queries**: For GET requests  
-B. **Mutations**: For POST, PUT, PATCH, DELETE operations  
-C. **Query Invalidation**: Marking queries as stale and potentially triggering refetches  
+**1 Cookie Management in TypeScript**  
+Install dependencies: `npm i js-cookie` and `npm i -D @types/js-cookie` for TypeScript support  
+Must use client-side components in Next.js when working with cookies  
+Follow documentation from current version v3.0.5
 
-**3 TanStack Query vs Zustand**  
-**TanStack Query**: Designed for server state management  
-- Handles data fetching, caching, synchronization, background updates, and pagination
-- Best for managing data from APIs or databases
+**2 Top 5 Cookie Use Cases**
 
-**Zustand**: Client-side state management library  
-- Used for UI state, user preferences, authentication state
-- Manages local app state that doesn't require server fetching 
+- [A] Authentication & Sessions
+  Store JWTs or session tokens securely with expiration  
+  Enhanced security over localStorage by reducing XSS risks  
+  Prevents persistent sessions for inactive users
+- [B] User Preferences & Personalization
+  Save settings like theme preference, language, or layout choices  
+  Ensures preferences persist across sessions  
+  No authentication or backend storage required
+- [C] Shopping Cart & E-commerce  
+  Maintain cart contents between sessions  
+  Improves user experience by preserving selections  
+  Reduces cart abandonment rates
+- [D] Remember Me & Auto-login
+  Enable persistent login across browser sessions  
+  Store tokens with appropriate expiration  
+  Balance convenience with security considerations
+- [E] Rate Limiting & Preventing Spam
+  Track form submissions or API requests  
+  Prevent multiple submissions in short periods  
+  Ensure fair use of application
 
-**4 Understanding the useQuery Return Object**  
-The object returned by useQuery includes:
-- **State Metadata**: `data`, `error`, `isLoading`, `isFetching`, and `status`
-- `data`: Contains the fetched response on success
-- `error`: Provides details on failure
-- `isLoading`: True during the first fetch
-- `isFetching`: True during any ongoing request
-- `status`: Can be "idle", "loading", "success", or "error"
-- **Utility Methods**: `refetch()` for manual re-fetching
-- **Timestamps**: `dataUpdatedAt` provides the last update time
-- **Advanced Features**: Automatic caching, background re-fetching, and retry logic
-- **Configuration Details**: Nested fields under `.meta`, `.queryKey`, and `.queryFn` 
+**3 Chart.js Integration**  
+Useful resources:
 
-**5 The useQueryClient Hook**  
-**Purpose**: Efficiently manages and synchronizes cached data across components  
-**Benefits**:
-- Enables immediate UI updates without refetching  
-- Improves performance by reducing redundant API calls  
-- Ensures data consistency  
+- [https://blog.logrocket.com/using-chart-js-react/](https://blog.logrocket.com/using-chart-js-react/)
+- [https://react-chartjs-2.js.org/](https://react-chartjs-2.js.org/)
 
-**Usage Example**: Instead of manually calling `refetchGetFormPosts()`, use `queryClient.invalidateQueries(["getFormPosts"])` inside the `onSuccess` callback of `useMutation` to automatically refetch posts when a new one is added
- 
-**6 API Organization Approaches**  
-### Centralized API Calls; When to Use This Approach**:  
-- ✅ When fetching from external APIs like jsonplaceholder.typicode.com
-- ✅ When using React Query for caching, background refetching, and mutations
-- ✅ When keeping API request logic centralized in a service file (apiService.ts)  
-### Next.js API Routes; When to Use API Routes (app/api/...)**:  
-- 🔹 When server-side processing is needed before returning data
-- 🔹 When handling authentication, authorization, or request validation
-- 🔹 When fetching from a backend database (e.g., MongoDB, PostgreSQL) 
+**4 Tailwind CSS v4 Global Styling**  
+Global stylesheet is teh new approach replacing tailwind.config.ts  
+Use `@layer base { }` for default styling:  
+`@layer base {`
+` * {`
+`  margin: 0;`
+`  padding: 0;`
+`  box-sizing: border-box;`
+`  scroll-behavior: smooth;`
+` }`
+`}`  
+Use `@theme inline {}` to extend Tailwind for custom colors and fonts
+
+**5 Tailwind CSS Animation**  
+`animate-pulse` utility applies a subtle pulsing animation  
+Commonly used for loading skeletons or to indicate background processes  
+Example: `<div class="w-32 h-32 bg-gray-300 animate-pulse"></div>`  
+Best for skeleton loaders, button feedback, and loading indicators
+
+**6 UI Enhancement Tools**  
+BProgress: A successor to Next NProgress Bar for page loading indicators
+
+**7 Next.js Advanced Features**  
+Implemented nested layouts for complex page structures  
+First experience with dynamic imports using next/dynamic
+
+**8 Next.js Authentication Middleware**  
+Checks for "user" cookie to manage authentication-based redirects  
+Redirects unauthorized users from protected routes to /login  
+Prevents authenticated users from accessing /login or /register  
+Uses NextResponse from "next/server" for handling redirects at the Edge
+
+**9 Map Integration**  
+Leaflet + react-leaflet + OpenStreetMap (OSM) provides a free alternative to Mapbox  
+Similar functionality with more setup required  
+Added type definitions with `npm install -D @types/leaflet`
+
+**10 State Management Debugging**  
+Redux DevTools Chrome extension works with any state management solution  
+Supports custom implementations when integrated with its API
+
+**11 Zustand Middleware**  
+`persist(...)`: Saves store state to localStorage for persistence across page reloads  
+`devtools(...)`: Enables Redux DevTools support for debugging store changes
+
+**12 VS Code Productivity Tips**  
+On Windows, hover over undefined terms and press Ctrl + Space for autocomplete  
+Press Enter to auto-import the module  
+Alternative: Ctrl + . to open Quick Fix and select "Add Import"  
+Ensure auto-imports are enabled in settings
 
 ### Continued development
 
